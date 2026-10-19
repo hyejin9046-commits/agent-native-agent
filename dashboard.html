@@ -638,6 +638,75 @@ body.ws-sorting, body.ws-sorting * { cursor: grabbing !important; user-select: n
 .prop.applied .state, .prop.rejected .state { display: block; }
 .prop.applied .state { color: var(--green); } .prop.rejected .state { color: var(--text-weak); }
 
+/* ---- 재고 ---- */
+.inv-alert[hidden], .inv-cam[hidden], .inv-scan .cam[hidden], .inv-lightbox[hidden], .inv-err[hidden], .inv-btn[hidden], #ivDel[hidden] { display: none; }
+.inv-alert { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 9px clamp(14px, 4vw, 28px); background: var(--danger-bg); color: var(--danger); font-size: 13px; font-weight: 700; cursor: pointer; }
+.inv-alert .ia-txt { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inv-alert button { flex: 0 0 auto; color: var(--danger); font-size: 15px; width: 28px; height: 28px; border-radius: 999px; }
+.inv-scan { display: flex; gap: 8px; padding: 12px; margin-bottom: 14px; align-items: center; }
+.inv-scan input { flex: 1; min-width: 0; height: 48px; border: 1.5px solid var(--line); border-radius: var(--r-sm); padding: 0 14px; font-size: 16px; color: var(--text); background: var(--surface-2); outline: none; }
+.inv-scan input:focus { border-color: var(--blue); background: var(--surface); }
+.inv-scan .cam { flex: 0 0 auto; width: 48px; height: 48px; border-radius: var(--r-sm); background: var(--surface-2); color: var(--text-sub); display: grid; place-items: center; }
+.inv-scan .cam svg { width: 22px; height: 22px; }
+.inv-cam { position: relative; margin-bottom: 14px; overflow: hidden; }
+.inv-cam video { display: block; width: 100%; max-height: 50vh; object-fit: cover; background: #000; }
+.inv-cam button { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 999px; background: rgba(0,0,0,.55); color: #fff; font-size: 16px; }
+.inv-hit { padding: 16px; margin-bottom: 14px; border: 2px solid var(--blue); }
+.inv-hit.low { border-color: var(--danger); }
+.inv-hit .ih-name { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.inv-hit .ih-code { font-size: 12px; color: var(--text-weak); font-weight: 700; margin-top: 2px; font-family: ui-monospace, monospace; }
+.inv-hit .ih-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 12px; }
+.inv-hit .ih-grid div { background: var(--surface-2); border-radius: var(--r-xs); padding: 10px 12px; }
+.inv-hit .ih-grid b { display: block; font-size: 11.5px; color: var(--text-weak); font-weight: 800; margin-bottom: 4px; }
+.inv-hit .ih-grid span { font-size: 16px; font-weight: 800; }
+.inv-hit .ih-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.inv-btn { height: 36px; padding: 0 14px; border-radius: 999px; background: var(--surface-2); color: var(--text); font-weight: 800; font-size: 13.5px; }
+.inv-btn.pri { background: var(--blue); color: #fff; }
+.inv-search { width: 100%; height: 40px; border: 1.5px solid var(--line); border-radius: 999px; padding: 0 14px; font-size: 14px; color: var(--text); background: var(--surface); outline: none; margin-bottom: 10px; }
+.inv-search:focus { border-color: var(--blue); }
+.inv-row { display: flex; align-items: center; gap: 12px; padding: 12px 15px; margin-bottom: 8px; cursor: pointer; }
+.inv-row .ir-body { flex: 1; min-width: 0; }
+.inv-row .ir-name { display: block; font-size: 14.5px; font-weight: 700; overflow-wrap: anywhere; }
+.inv-row .ir-meta { display: block; font-size: 12px; color: var(--text-weak); font-weight: 600; margin-top: 3px; overflow-wrap: anywhere; }
+.inv-row .ir-qty { flex: 0 0 auto; text-align: right; font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.inv-row .ir-qty small { display: block; font-size: 11px; font-weight: 700; color: var(--text-weak); }
+.inv-row.low .ir-qty, .inv-row.low .ir-qty small { color: var(--danger); }
+.inv-row .ir-step { flex: 0 0 auto; display: flex; gap: 4px; }
+.inv-row .ir-step button { width: 30px; height: 30px; border-radius: 999px; background: var(--surface-2); font-size: 16px; font-weight: 800; color: var(--text-sub); }
+.kpi.low .n { color: var(--danger); } .kpi.out .n { color: var(--warm-fg); }
+.inv-err { color: var(--danger); font-size: 12.5px; font-weight: 700; margin: -4px 0 10px; }
+.fld-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.inv-wrap { max-width: 1120px; }
+.inv-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 16px; align-items: start; }
+.inv-cats { position: sticky; top: 16px; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+.inv-cats button { display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: var(--r-sm); text-align: left; font-size: 14px; font-weight: 700; color: var(--text-sub); }
+.inv-cats button:hover { background: var(--surface-2); }
+.inv-cats button.on { background: var(--acc-weak); color: var(--acc-strong); font-weight: 800; }
+.inv-cats button .ic-n { margin-left: auto; font-size: 12px; font-weight: 800; color: var(--text-weak); font-variant-numeric: tabular-nums; }
+.inv-cats button.on .ic-n { color: inherit; }
+.inv-cats button[data-cat="low"] .ic-n.has { color: var(--danger); }
+.inv-cats .ic-sep { height: 1px; margin: 6px 8px; background: var(--line-2); }
+.fld select { width: 100%; height: 48px; border: 1.5px solid var(--line); border-radius: var(--r-sm); padding: 0 12px; font-size: 15px; color: var(--text); background: var(--surface-2); outline: none; }
+.fld select:focus { border-color: var(--blue); background: var(--surface); }
+.iv-photo { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.iv-photo img { width: 72px; height: 72px; object-fit: cover; border-radius: var(--r-sm); background: var(--surface-2); }
+.iv-photo .ph-none { width: 72px; height: 72px; border-radius: var(--r-sm); background: var(--surface-2); color: var(--text-weak); display: grid; place-items: center; font-size: 11.5px; font-weight: 700; }
+.inv-hit .ih-top { display: flex; gap: 14px; align-items: flex-start; }
+.inv-hit .ih-top > div { flex: 1; min-width: 0; }
+.inv-hit .ih-photo { flex: 0 0 auto; width: 132px; height: 132px; border-radius: var(--r-sm); object-fit: cover; cursor: zoom-in; background: var(--surface-2); }
+.inv-hit .ih-cat { display: inline-block; margin-top: 6px; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); color: var(--text-sub); font-size: 11.5px; font-weight: 800; }
+.inv-row .ir-thumb { flex: 0 0 auto; width: 44px; height: 44px; border-radius: var(--r-xs); object-fit: cover; background: var(--surface-2); }
+.inv-row .ir-thumb.none { display: grid; place-items: center; color: var(--text-weak); font-size: 18px; }
+.inv-lightbox { position: fixed; inset: 0; z-index: 90; background: rgba(0,0,0,.82); display: grid; place-items: center; padding: 24px; cursor: zoom-out; }
+.inv-lightbox img { max-width: 100%; max-height: 100%; border-radius: var(--r-sm); }
+@media (max-width: 768px) {
+  .inv-layout { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .inv-cats { position: static; flex-direction: row; overflow-x: auto; scrollbar-width: none; padding: 6px; }
+  .inv-cats::-webkit-scrollbar { display: none; }
+  .inv-cats button { flex: 0 0 auto; width: auto; white-space: nowrap; padding: 8px 12px; }
+  .inv-cats .ic-sep { display: none; }
+  .inv-hit .ih-photo { width: 96px; height: 96px; }
+}
 .errbar { display: none; align-items: center; gap: 8px; margin: 0 14px 8px; padding: 8px 12px; background: var(--danger-bg); border-radius: var(--r-xs); color: var(--danger); font-size: 12.5px; font-weight: 700; }
 .errbar button { margin-left: auto; font-size: 15px; color: var(--danger); }
 /* 터미널 다이얼로그 안내 카드(권한/확인 창이 열렸을 때) */
@@ -1272,6 +1341,7 @@ body.sys-mode .ws-combo { display: none; }
       <button class="tab on" data-view="todo" data-group="ws" role="tab" aria-selected="true">할일</button>
       <button class="tab" data-view="schedule" data-group="ws" role="tab" aria-selected="false">일정</button>
       <button class="tab" data-view="memo" data-group="ws" role="tab" aria-selected="false">메모</button>
+      <button class="tab" data-view="inventory" data-group="ws" role="tab" aria-selected="false">재고<span class="tbadge" id="invBadge">0</span></button>
       <button class="tab" data-view="evolve" data-group="collab" role="tab" aria-selected="false">진화<span class="tbadge" id="evoBadge">0</span></button>
       <button class="tab" data-view="approvals" data-group="collab" role="tab" aria-selected="false">승인<span class="tbadge" id="apprBadge">0</span></button>
       <button class="tab" data-view="requests" data-group="collab" role="tab" aria-selected="false">요청<span class="tbadge" id="reqBadge">0</span></button>
@@ -1307,6 +1377,9 @@ body.sys-mode .ws-combo { display: none; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
       <span>Log out<span class="mm-hint" id="menuLogoutHint" hidden></span></span></button>
   </div>
+
+  <!-- 재고 부족 알림 — 어느 탭에 있든 항상 보인다 -->
+  <div class="inv-alert" id="invAlert" role="alert" hidden><span aria-hidden="true">⚠</span><span class="ia-txt" id="invAlertTxt"></span><button id="invAlertClose" aria-label="알림 닫기" title="목록이 바뀔 때까지 숨기기">✕</button></div>
 
   <!-- 할일 -->
   <section class="view on" id="todoView" role="tabpanel"><div class="wrap">
@@ -1456,6 +1529,31 @@ body.sys-mode .ws-combo { display: none; }
     <div class="empty" id="updEmpty"></div>
   </div></section>
 
+  <!-- 재고 -->
+  <section class="view" id="inventoryView" role="tabpanel"><div class="wrap inv-wrap">
+    <div class="inv-layout">
+    <nav class="inv-cats card" id="invCats" aria-label="재고 카테고리"></nav>
+    <div class="inv-main">
+    <div class="kpis">
+      <div class="kpi card total"><div class="n" id="ivTotal">0</div><div class="l">전체 품목</div></div>
+      <div class="kpi card low"><div class="n" id="ivLow">0</div><div class="l">재고 부족</div></div>
+      <div class="kpi card out"><div class="n" id="ivOut">0</div><div class="l">재고 없음</div></div>
+    </div>
+    <form class="inv-scan card" id="invScanForm" autocomplete="off">
+      <input id="invScan" placeholder="바코드를 찍거나 입력 후 Enter" aria-label="바코드" inputmode="text" enterkeyhint="search">
+      <button type="button" class="cam" id="invCamBtn" aria-label="카메라로 바코드 찍기" title="카메라로 바코드 찍기" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="11" y1="8" x2="11" y2="16"/><line x1="14" y1="8" x2="14" y2="16"/><line x1="17" y1="8" x2="17" y2="16"/></svg></button>
+    </form>
+    <div class="inv-cam card" id="invCam" hidden><video id="invVideo" playsinline muted></video><button id="invCamClose" aria-label="카메라 닫기">✕</button></div>
+    <div id="invHit"></div>
+        <div class="sec-head"><h2 id="invTitle">전체 물품</h2><span class="cnt" id="invMeta"></span><span class="sp"></span>
+          <button class="add-btn" id="addInvBtn">＋ 물품</button></div>
+        <input class="inv-search" id="invQ" placeholder="이름·바코드·위치로 찾기" aria-label="재고 검색" autocomplete="off">
+        <div id="invList"></div>
+        <div class="empty" id="invEmpty">등록된 물품이 없습니다 — ＋ 물품으로 추가하거나 바코드를 찍어 보세요</div>
+    </div>
+    </div>
+  </div></section>
+
   <!-- 진화 -->
   <section class="view" id="evolveView" role="tabpanel"><div class="wrap">
     <div class="evo-head"><span class="evo-lead">How the agent thinks this app should evolve — from its features, your data and how you use it. Approve one and the agent builds it</span></div>
@@ -1575,6 +1673,7 @@ body.sys-mode .ws-combo { display: none; }
   <div class="mgroup" id="mPermList" role="radiogroup" aria-label="Permissions" hidden></div>
   <p class="mnote" id="mNote">Also becomes the default for new Claude Code sessions.</p>
 </div>
+<div class="inv-lightbox" id="invLightbox" role="dialog" aria-label="물품 사진" hidden><img id="invLightboxImg" alt=""></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <button class="newver" id="newver">New version available — tap to reload</button>
 <div class="chat-scrim" id="chatScrim"></div>
@@ -1617,6 +1716,28 @@ body.sys-mode .ws-combo { display: none; }
   <div class="fld"><label>Title</label><input id="tTitle" placeholder="e.g. Review the proposal" autocomplete="off"></div>
   <div class="fld"><label>Due date (optional)</label><input id="tDue" type="date"></div>
   <div class="modal-acts"><button class="cancel" data-close>Cancel</button><button class="save" id="tSave">Add</button></div>
+</div>
+<!-- 모달: 재고 물품 추가/수정 -->
+<div class="modal" id="invModal" role="dialog" aria-modal="true" aria-labelledby="ivmTitle">
+  <h3 id="ivmTitle">물품 추가</h3>
+  <div class="fld"><label for="ivName">물품 이름</label><input id="ivName" placeholder="예: 에탄올 99.5% 500mL" autocomplete="off"></div>
+  <div class="fld"><label for="ivCat">카테고리</label><select id="ivCat"></select></div>
+  <div class="fld"><label for="ivCode">바코드</label><input id="ivCode" placeholder="스캐너로 찍거나 직접 입력" autocomplete="off"></div>
+  <div class="fld-row">
+    <div class="fld"><label for="ivQty">수량</label><input id="ivQty" type="number" min="0" step="any" inputmode="decimal" value="0"></div>
+    <div class="fld"><label for="ivUnit">단위</label><input id="ivUnit" placeholder="개, 병, 박스…" autocomplete="off"></div>
+  </div>
+  <div class="fld-row">
+    <div class="fld"><label for="ivMin">알림 기준 수량</label><input id="ivMin" type="number" min="0" step="any" inputmode="decimal" value="0" title="수량이 이 값 이하로 떨어지면 알림"></div>
+    <div class="fld"><label for="ivDate">구입 날짜</label><input id="ivDate" type="date"></div>
+  </div>
+  <div class="fld"><label for="ivLoc">보관 위치 (선택)</label><input id="ivLoc" placeholder="예: 시약장 B-2" autocomplete="off"></div>
+  <div class="fld"><label>사진 (선택)</label>
+    <div class="iv-photo"><span id="ivPhotoPrev"></span>
+      <button type="button" class="inv-btn" id="ivPhotoPick">사진 선택</button><button type="button" class="inv-btn" id="ivPhotoClear" hidden>사진 삭제</button>
+      <input type="file" id="ivPhotoFile" accept="image/*" hidden></div></div>
+  <div class="inv-err" id="ivErr" hidden></div>
+  <div class="modal-acts"><button class="cancel" id="ivDel" hidden>삭제</button><button class="cancel" data-close>취소</button><button class="save" id="ivSave">저장</button></div>
 </div>
 <!-- 모달: 참조 연결(REFERS_TO) -->
 <div class="modal" id="linkModal" role="dialog" aria-modal="true" aria-labelledby="lkTitle">
@@ -1676,16 +1797,16 @@ let logMode = false, logRev = 0, logSession = '', logTimer = null, logBusy = fal
 const logOpen = new Set();          // 사용자가 펼쳐 둔 도구 묶음(다시 그려도 유지)   // attachments: {name, size, path, pending}
 
 /* ================= 데이터 (할일 + 일정) ================= */
-let dataVersion = 0, items = [], events = [], notes = [], graphLinks = [];
+let dataVersion = 0, items = [], events = [], notes = [], inventory = [], graphLinks = [];
 const proposals = new Map();
 async function refreshData() {
   let s;
   try { s = await (await getJSON('/api/state')); } catch { return; }
   dataVersion = s.version || 1;
-  items = s.items || []; events = s.events || []; notes = s.notes || [];
+  items = s.items || []; events = s.events || []; notes = s.notes || []; inventory = s.inventory || [];
   graphLinks = (s.graph && s.graph.links) || [];   // NodeRel이 만든 관계(파생 DUE_ON/ON 포함)
   (s.proposals || []).forEach((p) => proposals.set(p.id, p)); renderApprovals();
-  renderTodos(); renderCalendar(); renderDay(); renderUpcoming(); renderMemos();
+  renderTodos(); renderCalendar(); renderDay(); renderUpcoming(); renderMemos(); renderInventory();
   if ($('relationsView').classList.contains('on')) renderRelations();
   refreshPropCards();
 }
@@ -1794,6 +1915,228 @@ $('todoList').addEventListener('keydown', (e) => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
   const el = e.target.closest('.item'); if (!el) return; e.preventDefault(); toggleTodo(el);
 });
+
+/* ---- 재고 ----
+   바코드 스캐너(USB·블루투스)는 키보드처럼 글자를 빠르게 치고 Enter를 누른다. 재고 탭의 입력칸에서 받고,
+   다른 곳에 포커스가 없을 때 빠르게 들어온 키 묶음도 스캔으로 본다. 카메라 스캔은 BarcodeDetector가 있는 브라우저에서만. */
+const invLow = (v) => (v.minQty > 0 && v.qty <= v.minQty) || v.qty <= 0;
+const INV_CATS = [['solvent', '용매'], ['reagent', '시약'], ['consumable', '소모품'], ['tool', '기구'], ['equipment', '장비']];
+const invCatName = (c) => (INV_CATS.find((x) => x[0] === c) || [, ''])[1];
+let invCat = 'all';   // 'all' | 'low' | 카테고리 코드
+try { invCat = localStorage.getItem('ana-inv-cat') || 'all'; } catch {}
+$('ivCat').innerHTML = '<option value="">미분류</option>' + INV_CATS.map(([k, n]) => `<option value="${k}">${n}</option>`).join('');
+function renderInvCats() {
+  const n = (f) => inventory.filter(f).length;
+  const nLow = n(invLow);
+  const rows = [['all', '전체 물품', inventory.length], ['low', '부족한 물품', nLow], null, ...INV_CATS.map(([k, name]) => [k, name, n((v) => v.category === k)])];
+  $('invCats').innerHTML = rows.map((r) => r ? `<button data-cat="${r[0]}" class="${invCat === r[0] ? 'on' : ''}" aria-pressed="${invCat === r[0]}">${r[1]}<span class="ic-n ${r[0] === 'low' && nLow ? 'has' : ''}">${r[2]}</span></button>` : '<div class="ic-sep"></div>').join('');
+  $('invTitle').textContent = rows.find((r) => r && r[0] === invCat)[1];
+}
+$('invCats').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-cat]'); if (!b) return;
+  invCat = b.dataset.cat; try { localStorage.setItem('ana-inv-cat', invCat); } catch {}
+  renderInventory();
+});
+const invQtyText = (v) => `${+v.qty.toFixed(3)}${v.unit ? ' ' + v.unit : ''}`;
+let invHitId = '', invEditId = '', invAlertHidden = '';
+function renderInventory() {
+  const low = inventory.filter(invLow);
+  $('ivTotal').textContent = inventory.length;
+  $('ivLow').textContent = low.length;
+  $('ivOut').textContent = inventory.filter((v) => v.qty <= 0).length;
+  $('invBadge').textContent = low.length > 9 ? '9+' : low.length; $('invBadge').classList.toggle('show', low.length > 0);
+  if (!['all', 'low', ...INV_CATS.map((x) => x[0])].includes(invCat)) invCat = 'all';
+  renderInvCats();
+  const q = $('invQ').value.trim().toLowerCase();
+  const list = inventory.filter((v) => invCat === 'all' || (invCat === 'low' ? invLow(v) : v.category === invCat))
+    .filter((v) => !q || [v.name, v.barcode, v.location].some((x) => String(x || '').toLowerCase().includes(q)))
+    .sort((a, b) => (invLow(b) - invLow(a)) || a.name.localeCompare(b.name, 'ko'));
+  $('invMeta').textContent = `${list.length}개`;
+  $('invList').innerHTML = list.map((v) => `
+    <div class="inv-row card ${invLow(v) ? 'low' : ''}" data-id="${escapeHtml(v.id)}" role="button" tabindex="0">
+      ${v.photo ? `<img class="ir-thumb" src="${escapeHtml(v.photo)}" alt="" loading="lazy">` : '<span class="ir-thumb none" aria-hidden="true">▢</span>'}
+      <span class="ir-body"><span class="ir-name">${escapeHtml(v.name)}</span>
+        <span class="ir-meta">${[invCatName(v.category), v.barcode && '▮ ' + v.barcode, v.purchasedAt && '구입 ' + v.purchasedAt, v.location].filter(Boolean).map(escapeHtml).join(' · ') || '바코드 없음'}</span></span>
+      <span class="ir-qty">${escapeHtml(invQtyText(v))}<small>${invLow(v) ? (v.qty <= 0 ? '재고 없음' : '부족') : v.minQty > 0 ? '기준 ' + escapeHtml(String(v.minQty)) : ''}</small></span>
+      <span class="ir-step"><button data-adj="-1" aria-label="1 사용">−</button><button data-adj="1" aria-label="1 입고">＋</button></span>
+    </div>`).join('');
+  $('invEmpty').style.display = list.length ? 'none' : 'block';
+  $('invEmpty').textContent = !inventory.length ? '등록된 물품이 없습니다 — ＋ 물품으로 추가하거나 바코드를 찍어 보세요'
+    : invCat === 'low' && !q ? '부족한 물품이 없습니다' : '이 분류에 해당하는 물품이 없습니다';
+  renderInvHit(); renderInvAlert(low);
+}
+function renderInvHit() {
+  const v = inventory.find((x) => x.id === invHitId);
+  if (!v) { $('invHit').innerHTML = ''; return; }
+  $('invHit').innerHTML = `<div class="inv-hit card ${invLow(v) ? 'low' : ''}" data-id="${escapeHtml(v.id)}">
+    <div class="ih-top">${v.photo ? `<img class="ih-photo" src="${escapeHtml(v.photo)}" alt="${escapeHtml(v.name)} 사진" data-zoom title="크게 보기">` : ''}
+      <div><div class="ih-name">${escapeHtml(v.name)}</div><div class="ih-code">${escapeHtml(v.barcode || '바코드 없음')}</div>
+      ${v.category ? `<span class="ih-cat">${invCatName(v.category)}</span>` : ''}</div></div>
+    <div class="ih-grid"><div><b>수량</b><span>${escapeHtml(invQtyText(v))}</span></div>
+      <div><b>구입 날짜</b><span>${escapeHtml(v.purchasedAt || '—')}</span></div>
+      ${v.location ? `<div><b>보관 위치</b><span>${escapeHtml(v.location)}</span></div>` : ''}
+      ${v.minQty > 0 ? `<div><b>알림 기준</b><span>${escapeHtml(String(v.minQty))}</span></div>` : ''}</div>
+    <div class="ih-acts"><button class="inv-btn pri" data-adj="-1">1 사용</button><button class="inv-btn" data-adj="1">1 입고</button>
+      <button class="inv-btn" data-edit>수정</button><button class="inv-btn" data-close-hit>닫기</button></div></div>`;
+}
+function renderInvAlert(low) {
+  const key = low.map((v) => v.id + ':' + v.qty).join(',');
+  const show = low.length > 0 && key !== invAlertHidden;
+  $('invAlert').hidden = !show;
+  if (show) $('invAlertTxt').textContent = `재고 부족 ${low.length}건 — ` + low.slice(0, 4).map((v) => `${v.name} (${invQtyText(v)})`).join(', ') + (low.length > 4 ? ` 외 ${low.length - 4}건` : '');
+  invNotify(low);
+}
+// 새로 부족해진 물품은 브라우저 알림으로도 알린다(권한을 준 경우). 처음 불러올 때는 배너만.
+let invLowSeen = null;
+function invNotify(low) {
+  const ids = new Set(low.map((v) => v.id));
+  if (invLowSeen && typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+    const fresh = low.filter((v) => !invLowSeen.has(v.id));
+    if (fresh.length) try { new Notification('재고 부족', { body: fresh.map((v) => `${v.name}: ${invQtyText(v)}`).join('\n'), tag: 'ana-inventory' }); } catch {}
+  }
+  invLowSeen = ids;
+}
+$('invAlert').onclick = (e) => {
+  if (e.target.closest('#invAlertClose')) { invAlertHidden = inventory.filter(invLow).map((v) => v.id + ':' + v.qty).join(','); $('invAlert').hidden = true; return; }
+  showTab('inventory'); $('invQ').value = ''; renderInventory();
+  if (typeof Notification !== 'undefined' && Notification.permission === 'default') try { Notification.requestPermission(); } catch {}
+};
+async function invPost(body) {
+  const r = await post('/api/inventory', body).catch(() => null);
+  const j = r ? await r.json().catch(() => ({})) : { error: '서버에 연결하지 못했습니다' };
+  if (!r || !r.ok) return { error: j.error || '저장하지 못했습니다' };
+  await refreshData(); return j;
+}
+function invScan(code) {
+  code = String(code || '').trim(); if (!code) return;
+  const v = inventory.find((x) => x.barcode === code);
+  showTab('inventory');
+  $('invScan').value = '';
+  if (v) { invHitId = v.id; renderInvHit(); flash('#invHit .inv-hit'); }
+  else { invHitId = ''; renderInvHit(); toast(`등록되지 않은 바코드: ${code}`); openInvModal('', code); }
+}
+function openInvModal(id, code) {
+  const v = inventory.find((x) => x.id === id);
+  invEditId = v ? v.id : '';
+  $('ivmTitle').textContent = v ? '물품 수정' : '물품 추가';
+  $('ivName').value = v ? v.name : ''; $('ivCode').value = v ? v.barcode : (code || '');
+  $('ivQty').value = v ? v.qty : 0; $('ivUnit').value = v ? v.unit : '';
+  $('ivMin').value = v ? v.minQty : 0; $('ivDate').value = v ? v.purchasedAt : today();
+  $('ivLoc').value = v ? v.location : '';
+  $('ivCat').value = v ? (v.category || '') : (invCat !== 'all' && invCat !== 'low' ? invCat : '');
+  invPhoto = v ? (v.photo || '') : ''; invPhotoShow();
+  $('ivDel').hidden = !v; $('ivErr').hidden = true;
+  openModal('invModal');
+}
+$('ivSave').onclick = async () => {
+  const name = $('ivName').value.trim(); if (!name) { $('ivName').focus(); return; }
+  if (invPhotoBusy) { toast('사진을 올리는 중입니다'); return; }
+  const body = { name, category: $('ivCat').value, photo: invPhoto, barcode: $('ivCode').value, qty: $('ivQty').value || 0, unit: $('ivUnit').value, minQty: $('ivMin').value || 0, purchasedAt: $('ivDate').value, location: $('ivLoc').value };
+  const r = await invPost(invEditId ? { action: 'update', id: invEditId, ...body } : { action: 'add', ...body });
+  if (r.error) { $('ivErr').textContent = r.error === 'An item with that barcode already exists' ? '같은 바코드의 물품이 이미 있습니다' : r.error; $('ivErr').hidden = false; return; }
+  closeModal(); invHitId = r.id; renderInvHit(); toast('저장했습니다');
+};
+// 사진 — 브라우저에서 긴 변 1280px JPEG로 줄여 /api/upload에 올리고, 그 경로(/uploads/…)를 물품에 저장한다
+let invPhoto = '', invPhotoBusy = false;
+function invPhotoShow() {
+  $('ivPhotoPrev').innerHTML = invPhotoBusy ? '<span class="ph-none">올리는 중…</span>' : invPhoto ? `<img src="${escapeHtml(invPhoto)}" alt="물품 사진 미리보기">` : '<span class="ph-none">사진 없음</span>';
+  $('ivPhotoClear').hidden = !invPhoto || invPhotoBusy;
+  $('ivPhotoPick').textContent = invPhoto ? '사진 바꾸기' : '사진 선택';
+}
+function shrinkImage(file, max) {
+  return new Promise((resolve) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      resolve(c.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+}
+$('ivPhotoPick').onclick = () => $('ivPhotoFile').click();
+$('ivPhotoClear').onclick = () => { invPhoto = ''; invPhotoShow(); };
+$('ivPhotoFile').onchange = async () => {
+  const f = $('ivPhotoFile').files[0]; $('ivPhotoFile').value = ''; if (!f) return;
+  invPhotoBusy = true; invPhotoShow();
+  const data = await shrinkImage(f, 1280);
+  let r = null;
+  if (data) r = await post('/api/upload', { name: 'inventory.jpg', data }).then((x) => x.ok ? x.json() : null).catch(() => null);
+  invPhotoBusy = false;
+  if (r && r.path) invPhoto = '/uploads/' + encodeURIComponent(r.path.split(/[\\/]/).pop());
+  else toast(data ? '사진을 올리지 못했습니다' : '이미지 파일을 읽지 못했습니다');
+  invPhotoShow();
+};
+$('invLightbox').onclick = () => { $('invLightbox').hidden = true; $('invLightboxImg').src = ''; };
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('invLightbox').hidden) $('invLightbox').onclick(); });
+$('ivDel').onclick = () => {
+  const v = inventory.find((x) => x.id === invEditId); if (!v) return;
+  closeModal();
+  confirmDelete(`물품 "${v.name}"`).then(async (ok) => { if (!ok) return; const r = await invPost({ action: 'remove', id: v.id }); if (r.error) toast(r.error); });
+};
+// 바코드 칸에서 Enter를 누르면 스캐너가 보낸 키 묶음과 같은 효과
+$('ivCode').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); $('ivQty').focus(); } });
+$('invScanForm').addEventListener('submit', (e) => { e.preventDefault(); invScan($('invScan').value); });
+$('invQ').addEventListener('input', renderInventory);
+$('addInvBtn').onclick = () => openInvModal('');
+async function invAdjust(id, delta) { const r = await invPost({ action: 'adjust', id, delta }); if (r.error) toast(r.error); }
+$('invList').addEventListener('click', (e) => {
+  const row = e.target.closest('.inv-row'); if (!row) return;
+  const adj = e.target.closest('[data-adj]');
+  if (adj) { invAdjust(row.dataset.id, Number(adj.dataset.adj)); return; }
+  invHitId = row.dataset.id; renderInvHit(); $('invHit').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+});
+$('invList').addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' || !e.target.classList.contains('inv-row')) return;
+  e.preventDefault(); invHitId = e.target.dataset.id; renderInvHit();
+});
+$('invHit').addEventListener('click', (e) => {
+  const card = e.target.closest('.inv-hit'); if (!card) return;
+  const adj = e.target.closest('[data-adj]');
+  if (adj) invAdjust(card.dataset.id, Number(adj.dataset.adj));
+  else if (e.target.closest('[data-edit]')) openInvModal(card.dataset.id);
+  else if (e.target.closest('[data-zoom]')) { $('invLightboxImg').src = e.target.closest('[data-zoom]').src; $('invLightbox').hidden = false; }
+  else if (e.target.closest('[data-close-hit]')) { invHitId = ''; renderInvHit(); $('invScan').focus(); }
+});
+// 입력칸 밖에서 스캐너가 친 키 묶음(글자 간격 50ms 미만, 4자 이상 + Enter)을 잡는다 — 어느 탭에 있든 재고 탭으로 간다
+(() => {
+  let buf = '', last = 0;
+  document.addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (e.ctrlKey || e.metaKey || e.altKey || modalCur || (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))) { buf = ''; return; }
+    const now = performance.now();
+    if (now - last > 50) buf = '';
+    last = now;
+    if (e.key === 'Enter') { if (buf.length >= 4) { e.preventDefault(); invScan(buf); } buf = ''; return; }
+    if (e.key.length === 1) buf += e.key;
+  }, true);
+})();
+// 카메라 스캔 — BarcodeDetector(Chrome·Edge·Android 등)가 있을 때만 버튼을 보인다
+let invStream = null, invCamTimer = 0;
+if ('BarcodeDetector' in window && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) $('invCamBtn').hidden = false;
+function invCamStop() {
+  clearTimeout(invCamTimer);
+  if (invStream) invStream.getTracks().forEach((t) => t.stop());
+  invStream = null; $('invCam').hidden = true;
+}
+$('invCamClose').onclick = invCamStop;
+$('invCamBtn').onclick = async () => {
+  if (invStream) { invCamStop(); return; }
+  let det;
+  try { det = new BarcodeDetector(); } catch { toast('이 브라우저는 카메라 바코드 인식을 지원하지 않습니다'); return; }
+  try { invStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }); }
+  catch { toast('카메라를 열지 못했습니다 — 권한을 확인해 주세요'); return; }
+  const vid = $('invVideo'); vid.srcObject = invStream; $('invCam').hidden = false;
+  try { await vid.play(); } catch {}
+  const tick = async () => {
+    if (!invStream) return;
+    try { const found = await det.detect(vid); if (found.length && found[0].rawValue) { invCamStop(); invScan(found[0].rawValue); return; } } catch {}
+    invCamTimer = setTimeout(tick, 250);
+  };
+  tick();
+};
 
 /* ---- 일정 (달력) ---- */
 let calY, calM, selDate; // calM: 0-11
@@ -2919,7 +3262,7 @@ function selectTab(b) {
     if (b.dataset.group && b.dataset.group !== appMode) applyArea(b.dataset.group);
     if ($('memoView').classList.contains('on') && b.dataset.view !== 'memo') cleanupEmptyMemos(); // 메모 탭 이탈 시 빈 메모 정리(진화 #3)
     document.querySelectorAll('.topnav .tab').forEach((x) => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', String(on)); });
-    ['todo', 'schedule', 'memo', 'evolve', 'approvals', 'requests', 'requirements', 'stats', 'relations', 'reliability', 'safety', 'security', 'update', 'files'].forEach((v) => $(v + 'View').classList.toggle('on', b.dataset.view === v));
+    ['todo', 'schedule', 'memo', 'inventory', 'evolve', 'approvals', 'requests', 'requirements', 'stats', 'relations', 'reliability', 'safety', 'security', 'update', 'files'].forEach((v) => $(v + 'View').classList.toggle('on', b.dataset.view === v));
     lastTab[appMode] = b.dataset.view;
     revealTab(b);
     try { localStorage.setItem('ana-area-tabs', JSON.stringify(lastTab)); } catch {}
@@ -2931,6 +3274,7 @@ function selectTab(b) {
     if (b.dataset.view === 'files') loadFiles(filesPath);
     if (b.dataset.view === 'stats') renderStats();
     if (b.dataset.view === 'relations') renderRelations();
+    if (b.dataset.view === 'inventory') setTimeout(() => $('invScan').focus(), 30);
 }
 document.querySelectorAll('.topnav .tab').forEach((b) => { b.onclick = () => selectTab(b); });
 // 고른 탭이 가려져 있으면 보이게 밀고, 양옆에 더 있는지 가장자리 흐림으로 알린다
