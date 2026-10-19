@@ -2018,6 +2018,7 @@ function renderInvCats() {
 const invLocations = () => [...new Set(inventory.map((v) => (v.location || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'ko', { numeric: true }));
 $('invCats').addEventListener('click', (e) => {
   const b = e.target.closest('[data-cat]'); if (!b) return;
+  if (b.dataset.cat !== invCat) invHitId = '';   // 다른 분류로 가면 열어 둔 물품 카드는 닫는다
   invCat = b.dataset.cat; try { localStorage.setItem('ana-inv-cat', invCat); } catch {}
   renderInventory();
 });
@@ -2163,6 +2164,7 @@ function renderInvAlert(low, exp) {
 }
 $('invExpAlert').onclick = (e) => {
   if (e.target.closest('#invExpAlertClose')) { invExpHidden = inventory.filter(invExpiring).map((v) => v.id + ':' + v.expiresAt + ':' + invExp(v).state).join(','); $('invExpAlert').hidden = true; return; }
+  if (invCat !== 'exp') invHitId = '';
   invCat = 'exp'; showTab('inventory'); $('invQ').value = ''; renderInventory();
 };
 // 새로 부족해진 물품은 브라우저 알림으로도 알린다(권한을 준 경우). 처음 불러올 때는 배너만.
